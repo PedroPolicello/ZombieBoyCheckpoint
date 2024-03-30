@@ -29,7 +29,7 @@ public class Pumpkins : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            //ponto++
+            ScoreManager.Instance.AddScore(1);
         }
     }
 
