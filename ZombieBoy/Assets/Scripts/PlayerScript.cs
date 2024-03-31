@@ -6,10 +6,11 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public static PlayerScript Instance;
-    
+
     [SerializeField] private float speed;
     [SerializeField] private Camera playerCam;
-    
+    [SerializeField] private Animator anim;
+
     private string hitTag;
     private Touch touch;
     private Ray ray;
@@ -19,7 +20,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance!=null) Destroy(gameObject);
+        if (Instance != null) Destroy(gameObject);
     }
 
     void Update()
@@ -45,12 +46,14 @@ public class PlayerScript : MonoBehaviour
                         pos.y = transform.position.y;
                         transform.position = Vector3.Lerp(transform.position, pos, speed * Time.deltaTime);
                         transform.LookAt(pos);
+                        anim.SetBool("isRunning", true);
                     }
                 }
             }
             else if (touch.phase == TouchPhase.Ended)
             {
                 hitTag = null;
+                anim.SetBool("isRunning", false);
             }
         }
     }

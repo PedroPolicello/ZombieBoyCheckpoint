@@ -30,6 +30,7 @@ public class Pumpkins : MonoBehaviour
         {
             Destroy(gameObject);
             ScoreManager.Instance.AddScore(1);
+            AudioManager.Instance.CollectSFX();
         }
     }
 
